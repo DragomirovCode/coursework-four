@@ -1,29 +1,32 @@
 package com.bookStore.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="MyBooks")
 public class MyBookList {
-	
 	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
+	@Column(name = "name")
 	private String name;
+	@Column(name = "author")
 	private String author;
+	@Column(name = "price")
 	private int price;
+	private int currentUserId;
 	public MyBookList() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public MyBookList(int id, String name, String author, int price) {
+	public MyBookList(int currentUserId, int id, String name, String author, int price) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.author = author;
 		this.price = price;
+		this.currentUserId = currentUserId;
 	}
 	public int getId() {
 		return id;
@@ -48,5 +51,11 @@ public class MyBookList {
 	}
 	public void setPrice(int price) {
 		this.price = price;
+	}
+	public int getCurrentUserId() {
+		return currentUserId;
+	}
+	public void setCurrentUserId(int currentUserId) {
+		this.currentUserId = currentUserId;
 	}
 }
