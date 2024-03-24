@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Приветствую!!!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .sidebar {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            width: 200px;
+            height: 100vh;
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .sidebar button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            color: #333;
+            background-color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        .sidebar button:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+<div class="sidebar">
+    <form th:action="@{/auth/login}" th:method="GET">
+        <button type="submit">Вход</button>
+    </form>
+    <form th:action="@{/auth/registration}" th:method="GET">
+        <button type="submit">Регистрация</button>
+    </form>
+</div>
+</body>
+</html>
