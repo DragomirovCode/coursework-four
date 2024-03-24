@@ -25,4 +25,8 @@ public class MyBookListService {
 	public void deleteById(int id) {
 		mybook.deleteById(id);
 	}
+
+	public List<MyBookList> getBooksByUserId(int userId) {
+		return mybook.findByCurrentUserId(userId);
+	}
 }
