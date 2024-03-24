@@ -4,5 +4,6 @@ CREATE TABLE my_books (
                           name VARCHAR(255),
                           author VARCHAR(255),
                           price INT,
+                          quantity INT,
                           FOREIGN KEY (current_user_id) REFERENCES person(id) -- Внешний ключ, связывающий user_id с идентификатором пользователя в таблице person
 );
