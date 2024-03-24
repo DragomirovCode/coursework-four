@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns:th="https://www.thymeleaf.com">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 
   <meta charset="utf-8">
@@ -54,6 +54,7 @@
       <th scope="col">Name</th>
       <th scope="col">Author</th>
       <th scope="col">Price</th>
+      <th scope="col">Quantity</th>
       <th scope="col">Action</th>
     </tr>
     </thead>
@@ -63,6 +64,7 @@
       <td th:text="${b.name}"></td>
       <td th:text="${b.author}"></td>
       <td th:text="${b.price}"></td>
+      <td th:text="${b.quantity}"></td> <!-- Добавлено отображение количества -->
       <td><a style="color:red" th:href="@{/deleteMyList/{id}(id=${b.id})}"><i class="fa-solid fa-trash"></i></a></td>
     </tr>
     </tbody>
