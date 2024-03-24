@@ -43,14 +43,17 @@ public class BookController {
 	}
 
 	@GetMapping("/available_books")
-	public ModelAndView getAllBook() {
-		List<Book>list=service.getAllBook();
-//		ModelAndView m=new ModelAndView();
-//		m.setViewName("bookList");
-//		m.addObject("book",list);
-		return new ModelAndView("bookList","book",list);
+	public ModelAndView getAllBook(@RequestParam(value = "keyword", required = false) String keyword) {
+		List<Book> list;
+		if (keyword != null && !keyword.isEmpty()) {
+			list = service.getBooksByName(keyword);
+		} else {
+			list = service.getAllBook();
+		}
+		return new ModelAndView("bookList", "book", list);
 	}
-	
+
+
 	@PostMapping("/save")
 	public String addBook(@ModelAttribute Book b) {
 		service.save(b);

@@ -28,4 +28,7 @@ public class BookService {
 	public void deleteById(int id) {
 		bRepo.deleteById(id);
 	}
+	public List<Book> getBooksByName(String name){
+		return bRepo.findByName(name);
+	}
 }
