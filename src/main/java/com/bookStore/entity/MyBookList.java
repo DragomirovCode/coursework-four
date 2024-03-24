@@ -15,18 +15,21 @@ public class MyBookList {
 	private String author;
 	@Column(name = "price")
 	private int price;
+	@Column(name = "quantity")
+	private int quantity; // количество книг в наличии
 	private int currentUserId;
 	public MyBookList() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public MyBookList(int currentUserId, int id, String name, String author, int price) {
+	public MyBookList(int currentUserId, int id, String name, String author, int price, int quantity) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.author = author;
 		this.price = price;
 		this.currentUserId = currentUserId;
+		this.quantity = quantity;
 	}
 	public int getId() {
 		return id;
@@ -57,5 +60,11 @@ public class MyBookList {
 	}
 	public void setCurrentUserId(int currentUserId) {
 		this.currentUserId = currentUserId;
+	}
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 }

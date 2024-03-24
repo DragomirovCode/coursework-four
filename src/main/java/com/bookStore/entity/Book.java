@@ -15,12 +15,15 @@ public class Book {
 	private String author;
 	@Column(name = "price")
 	private int price;
-	public Book(int id, String name, String author, int price) {
+	@Column(name = "quantity")
+	private int quantity; // количество книг в наличии
+	public Book(int id, String name, String author, int price, int quantity) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.author = author;
 		this.price = price;
+		this.quantity = quantity;
 	}
 	public Book() {
 		super();
@@ -50,5 +53,10 @@ public class Book {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
 }
