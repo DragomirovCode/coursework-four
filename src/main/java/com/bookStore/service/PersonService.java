@@ -1,0 +1,53 @@
+package com.bookStore.service;
+
+import com.bookStore.entity.Person;
+import com.bookStore.repository.PersonRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+@Transactional(readOnly = true)
+public class PersonService {
+
+    private final PersonRepository personRepository;
+    private final PasswordEncoder passwordEncoder;
+
+    @Autowired
+    public PersonService(PersonRepository personRepository, PasswordEncoder passwordEncoder) {
+        this.personRepository = personRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
+
+
+    public List<Person> findAll(){
+        return personRepository.findAll();
+    }
+
+    public Person findOne(int id){
+        Optional<Person> foundPerson = personRepository.findById(id);
+        return foundPerson.orElse(null);
+    }
+
+    @Transactional
+    public void save(Person person){
+        personRepository.save(person);
+        person.setPassword(passwordEncoder.encode(person.getPassword())); // шифрование пароля
+        person.setRole("ROLE_USER"); // роль для пользователей
+    }
+
+    @Transactional
+    public void update(int id, Person updatePerson){
+        updatePerson.setId(id);
+        personRepository.save(updatePerson);
+    }
+
+    @Transactional
+    public void delete(int id){
+        personRepository.deleteById(id);
+    }
+}
