@@ -56,9 +56,17 @@ public class BookController {
 
 	@PostMapping("/save")
 	public String addBook(@ModelAttribute Book b) {
+		// Проверяем, что количество книг больше нуля
+		if (b.getQuantity() <= 0) {
+			// Обработка ошибки или вывод сообщения пользователю
+			// Например, можно выбросить исключение или отобразить сообщение пользователю и
+			// перенаправить его обратно на страницу ввода книги.
+			return "redirect:/book_register";
+		}
 		service.save(b);
 		return "redirect:/available_books";
 	}
+
 	@GetMapping("/my_books")
 	public String getMyBooks(Model model, Principal principal, @RequestParam(value = "keyword", required = false) String keyword) {
 		String username = principal.getName();
@@ -84,7 +92,8 @@ public class BookController {
 		Book b = service.getBookById(id);
 
 		// Создаем экземпляр MyBookList для текущего пользователя
-		MyBookList mb = new MyBookList(currentUser.getId(), b.getId(), b.getName(), b.getAuthor(), b.getPrice());
+		MyBookList mb = new MyBookList(currentUser.getId(), b.getId(), b.getName(), b.getAuthor(), b.getPrice(),
+                b.getQuantity());
 		myBookService.saveMyBooks(mb);
 
 		return "redirect:/my_books";
