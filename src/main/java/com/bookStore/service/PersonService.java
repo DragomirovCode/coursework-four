@@ -50,4 +50,7 @@ public class PersonService {
     public void delete(int id){
         personRepository.deleteById(id);
     }
+    public Optional<Person> getPersonByName(String name){
+        return personRepository.findByUsername(name);
+    }
 }
