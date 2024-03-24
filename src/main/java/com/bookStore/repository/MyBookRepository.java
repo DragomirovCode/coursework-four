@@ -5,7 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import com.bookStore.entity.MyBookList;
 
+import java.util.List;
+
 @Repository
 public interface MyBookRepository extends JpaRepository<MyBookList,Integer>{
-
+    List<MyBookList> findByCurrentUserId (int userId);
 }
