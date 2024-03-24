@@ -60,13 +60,19 @@ public class BookController {
 		return "redirect:/available_books";
 	}
 	@GetMapping("/my_books")
-	public String getMyBooks(Model model, Principal principal) {
-		String username = principal.getName(); // Получаем имя текущего пользователя
-		Optional<Person> person = personService.getPersonByName(username); // Находим пользователя по его имени
-		List<MyBookList> list = myBookService.getBooksByUserId(person.get().getId()); // Получаем книги для текущего пользователя
+	public String getMyBooks(Model model, Principal principal, @RequestParam(value = "keyword", required = false) String keyword) {
+		String username = principal.getName();
+		Optional<Person> person = personService.getPersonByName(username);
+		List<MyBookList> list;
+		if (keyword != null && !keyword.isEmpty()) {
+			list = myBookService.getBooksByUserIdAndName(person.get().getId(), keyword);
+		} else {
+			list = myBookService.getBooksByUserId(person.get().getId());
+		}
 		model.addAttribute("book", list);
 		return "myBooks";
 	}
+
 
 	@RequestMapping("/mylist/{id}")
 	public String getMyList(@PathVariable("id") int id) {
