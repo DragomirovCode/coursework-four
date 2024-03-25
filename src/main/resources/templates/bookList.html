@@ -63,7 +63,12 @@
       <td th:text="${b.price}"></td>
       <td th:text="${b.quantity}"></td> <!-- Добавлено отображение количества -->
       <td>
-        <a class="btn btn-secondary btn-sm" th:href="@{/mylist/{id}(id=${b.id})}">Add To Mybook</a>
+        <form th:action="@{/mylist/{id}(id=${b.id})}" method="post">
+          <div class="input-group">
+            <input type="number" class="form-control" name="quantity" min="1" max="${b.quantity}" placeholder="Quantity" required>
+            <button type="submit" class="btn btn-secondary">Add To Mybook</button>
+          </div>
+        </form>
         <a style="color:blue" th:href="@{/editBook/{id}(id=${b.id})}"><i class="fa-solid fa-pen-to-square ms-4"></i></a>
         <a style="color:red" th:href="@{/deleteBook/{id}(id=${b.id})}"><i class="fa-solid fa-trash ms-4"></i></a>
       </td>
