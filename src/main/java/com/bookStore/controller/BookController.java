@@ -38,11 +38,6 @@
 			return "home";
 		}
 
-		@GetMapping("/book_register")
-		public String bookRegister() {
-			return "bookRegister";
-		}
-
 		@GetMapping("/available_books")
 		public ModelAndView getAllBook(@RequestParam(value = "keyword", required = false) String keyword) {
 			List<Book> list;
@@ -52,19 +47,6 @@
 				list = service.getAllBook();
 			}
 			return new ModelAndView("bookList", "book", list);
-		}
-
-		@PostMapping("/save")
-		public String addBook(@ModelAttribute Book b) {
-			// Проверяем, что количество книг больше нуля
-			if (b.getQuantity() <= 0) {
-				// Обработка ошибки или вывод сообщения пользователю
-				// Например, можно выбросить исключение или отобразить сообщение пользователю и
-				// перенаправить его обратно на страницу ввода книги.
-				return "redirect:/book_register";
-			}
-			service.save(b);
-			return "redirect:/available_books";
 		}
 
 		@GetMapping("/my_books")
