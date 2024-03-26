@@ -72,6 +72,9 @@
         <a style="color:blue" th:href="@{/editBook/{id}(id=${b.id})}"><i class="fa-solid fa-pen-to-square ms-4"></i></a>
         <a style="color:red" th:href="@{/deleteBook/{id}(id=${b.id})}"><i class="fa-solid fa-trash ms-4"></i></a>
       </td>
+      <td>
+        <a th:href="@{/book/{id}(id=${b.id})}" style="color: green;"><i class="fa-solid fa-info-circle"></i></a>
+      </td>
     </tr>
     </tbody>
   </table>

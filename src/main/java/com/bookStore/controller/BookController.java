@@ -20,29 +20,29 @@
 	
 	import java.security.Principal;
 	import java.util.*;
-	
+
 	@Controller
 	public class BookController {
-		
+
 		@Autowired
 		private BookService service;
-		
+
 		@Autowired
 		private MyBookListService myBookService;
-	
+
 		@Autowired
 		private PersonService personService;
-		
+
 		@GetMapping("/")
 		public String home() {
 			return "home";
 		}
-		
+
 		@GetMapping("/book_register")
 		public String bookRegister() {
 			return "bookRegister";
 		}
-	
+
 		@GetMapping("/available_books")
 		public ModelAndView getAllBook(@RequestParam(value = "keyword", required = false) String keyword) {
 			List<Book> list;
@@ -53,7 +53,7 @@
 			}
 			return new ModelAndView("bookList", "book", list);
 		}
-	
+
 		@PostMapping("/save")
 		public String addBook(@ModelAttribute Book b) {
 			// Проверяем, что количество книг больше нуля
@@ -112,14 +112,23 @@
 		}
 
 		@RequestMapping("/editBook/{id}")
-		public String editBook(@PathVariable("id") int id,Model model) {
-			Book b=service.getBookById(id);
-				model.addAttribute("book",b);
+		public String editBook(@PathVariable("id") int id, Model model) {
+			Book b = service.getBookById(id);
+			model.addAttribute("book", b);
 			return "bookEdit";
 		}
+
 		@RequestMapping("/deleteBook/{id}")
-		public String deleteBook(@PathVariable("id")int id) {
+		public String deleteBook(@PathVariable("id") int id) {
 			service.deleteById(id);
 			return "redirect:/available_books";
 		}
+
+		@GetMapping("/book/{id}")
+		public String viewBook(@PathVariable("id") int id, Model model) {
+			Book book = service.getBookById(id);
+			model.addAttribute("book", book);
+			return "bookDetails";
+		}
+
 	}
