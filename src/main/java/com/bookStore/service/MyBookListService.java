@@ -33,4 +33,8 @@ public class MyBookListService {
 	public List<MyBookList> getBooksByUserIdAndName(int userId, String keyword){
 		return mybook.findByCurrentUserIdAndNameContainingIgnoreCase(userId, keyword);
 	}
+
+	public MyBookList getMyBookId(int id){
+		return mybook.findById(id);
+	}
 }

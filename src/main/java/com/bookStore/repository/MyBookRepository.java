@@ -11,4 +11,5 @@ import java.util.List;
 public interface MyBookRepository extends JpaRepository<MyBookList,Integer>{
     List<MyBookList> findByCurrentUserId (int userId);
     List<MyBookList> findByCurrentUserIdAndNameContainingIgnoreCase (int userId, String keyword);
+    MyBookList findById (int id);
 }
