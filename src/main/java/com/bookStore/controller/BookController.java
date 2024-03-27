@@ -93,6 +93,12 @@
 			return "redirect:/my_books";
 		}
 
+		@PostMapping("/update_book")
+		public String updatePerson(@ModelAttribute Book updatedBook) {
+			int id = updatedBook.getId();
+			service.update(id, updatedBook);
+			return "redirect:/available_books";
+		}
 		@RequestMapping("/editBook/{id}")
 		public String editBook(@PathVariable("id") int id, Model model) {
 			Book b = service.getBookById(id);

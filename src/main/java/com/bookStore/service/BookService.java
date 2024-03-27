@@ -2,6 +2,7 @@ package com.bookStore.service;
 
 import java.util.List;
 
+import com.bookStore.entity.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,5 +31,9 @@ public class BookService {
 	}
 	public List<Book> getBooksByName(String name){
 		return bRepo.findByName(name);
+	}
+	public void update(int id, Book updateBook){
+		updateBook.setId(id);
+		bRepo.save(updateBook);
 	}
 }
