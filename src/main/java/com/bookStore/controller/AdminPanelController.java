@@ -51,9 +51,16 @@ public class AdminPanelController {
         return "redirect:/all_people";
     }
     @RequestMapping("/editPerson/{id}")
-    public String editPerson(@PathVariable("id") int id, Model model) {
+    public String showFormEditPerson(@PathVariable("id") int id, Model model) {
         Person p = personService.getPersonById(id);
         model.addAttribute("person", p);
         return "admin/personEdit";
+    }
+
+    @PostMapping("/update_person")
+    public String updatePerson(@ModelAttribute Person updatedPerson) {
+        int id = updatedPerson.getId(); // Получаем ID обновляемого человека
+        personService.update(id, updatedPerson); // Вызываем метод update сервиса для обновления информации о человеке
+        return "redirect:/all_people"; // Перенаправляем пользователя на страницу административной панели
     }
 }
