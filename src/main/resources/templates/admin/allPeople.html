@@ -63,12 +63,6 @@
       <td th:text="${p.email}"></td>
       <td th:text="${p.role}"></td>
       <td>
-        <form th:action="@{/person/{id}(id=${p.id})}" method="post">
-          <div class="input-group">
-            <input type="number" class="form-control" name="quantity" min="1" max="${b.quantity}" placeholder="Quantity" required>
-            <button type="submit" class="btn btn-secondary">Add To Mybook</button>
-          </div>
-        </form>
         <a style="color:blue" th:href="@{/editPerson/{id}(id=${p.id})}"><i class="fa-solid fa-pen-to-square ms-4"></i></a>
         <a style="color:red" th:href="@{/deletePerson/{id}(id=${p.id})}"><i class="fa-solid fa-trash ms-4"></i></a>
       </td>
