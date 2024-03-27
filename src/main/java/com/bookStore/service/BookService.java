@@ -39,4 +39,8 @@ public class BookService {
 	public List<Book> getSoldBooks(){
 		return bRepo.findSoldBooks();
 	}
+
+	public List<Book> getSoldQuantityGreaterThan(int quantity){
+		return bRepo.findBySoldQuantityGreaterThan(quantity);
+	}
 }

@@ -65,11 +65,15 @@ public class AdminPanelController {
     }
 
     @GetMapping("/sold_books")
-    public ModelAndView getSoldBooksReport() {
-        List<Book> soldBooks = service.getSoldBooks();
-        ModelAndView modelAndView = new ModelAndView("admin/soldBooks");
-        modelAndView.addObject("soldBooks", soldBooks);
-        return modelAndView;
+    public ModelAndView getSoldBooks(@RequestParam(value = "keyword", required = false) String keyword) {
+        List<Book> soldBooks;
+        if (keyword != null && !keyword.isEmpty()) {
+            // Если указано имя книги, выполняем поиск по этому имени
+            soldBooks = service.getBooksByName(keyword);
+        } else {
+            // В противном случае, просто получаем все проданные книги
+            soldBooks = service.getSoldBooks();
+        }
+        return new ModelAndView("admin/soldBooks", "book", soldBooks);
     }
-
 }

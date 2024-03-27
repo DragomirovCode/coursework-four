@@ -15,4 +15,6 @@ public interface BookRepository extends JpaRepository<Book,Integer>  {
 
     @Query("SELECT b FROM Book b WHERE b.soldQuantity > 0")
     List<Book> findSoldBooks();
+
+    List<Book> findBySoldQuantityGreaterThan (int quantity);
 }
