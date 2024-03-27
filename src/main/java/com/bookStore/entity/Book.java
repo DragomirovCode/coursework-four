@@ -17,6 +17,9 @@ public class Book {
 	private int price;
 	@Column(name = "quantity")
 	private int quantity; // количество книг в наличии
+	@Column(name = "sold_quantity")
+	private int soldQuantity; // количество проданных книг
+
 	public Book(int id, String name, String author, int price, int quantity) {
 		super();
 		this.id = id;
@@ -58,5 +61,13 @@ public class Book {
 	}
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+
+	public int getSoldQuantity() {
+		return soldQuantity;
+	}
+
+	public void setSoldQuantity(int soldQuantity) {
+		this.soldQuantity = soldQuantity;
 	}
 }

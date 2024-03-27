@@ -63,4 +63,13 @@ public class AdminPanelController {
         personService.update(id, updatedPerson); // Вызываем метод update сервиса для обновления информации о человеке
         return "redirect:/all_people"; // Перенаправляем пользователя
     }
+
+    @GetMapping("/sold_books")
+    public ModelAndView getSoldBooksReport() {
+        List<Book> soldBooks = service.getSoldBooks();
+        ModelAndView modelAndView = new ModelAndView("admin/soldBooks");
+        modelAndView.addObject("soldBooks", soldBooks);
+        return modelAndView;
+    }
+
 }

@@ -3,5 +3,6 @@ CREATE TABLE Book (
                       name VARCHAR(255),
                       author VARCHAR(255),
                       price int,
-                      quantity int
+                      quantity int,
+                      sold_quantity int
 );

@@ -71,10 +71,10 @@
 			PersonDetails currentUserDetails = (PersonDetails) authentication.getPrincipal();
 			Person currentUser = currentUserDetails.getPerson();
 
-			Book b = service.getBookById(id);
+			Book book = service.getBookById(id);
 
 			// Проверяем, что количество запрошенных книг меньше или равно доступному количеству
-			if (quantity > b.getQuantity() || quantity <= 0) {
+			if (quantity > book.getQuantity() || quantity <= 0) {
 				// Обработка ошибки или вывод сообщения пользователю
 				// Например, можно выбросить исключение или отобразить сообщение пользователю и
 				// перенаправить его обратно на страницу с доступными книгами.
@@ -82,19 +82,22 @@
 			}
 
 			// Создаем экземпляр MyBookList для текущего пользователя
-			MyBookList mb = new MyBookList(currentUser.getId(), b.getId(), b.getName(), b.getAuthor(), b.getPrice(),
-					quantity);
-			myBookService.saveMyBooks(mb);
+			MyBookList myBook = new MyBookList(currentUser.getId(), book.getId(), book.getName(), book.getAuthor(), book.getPrice(), quantity);
+			myBookService.saveMyBooks(myBook);
 
 			// Уменьшаем количество книг в наличии на выбранное количество
-			b.setQuantity(b.getQuantity() - quantity);
-			service.save(b);
+			book.setQuantity(book.getQuantity() - quantity);
+			// Увеличиваем количество проданных книг на выбранное количество
+			int soldQuantity = book.getSoldQuantity();
+			book.setSoldQuantity(soldQuantity + quantity);
+			// Сохраняем изменения
+			service.save(book);
 
 			return "redirect:/my_books";
 		}
 
 		@PostMapping("/update_book")
-		public String updatePerson(@ModelAttribute Book updatedBook) {
+		public String updateBook(@ModelAttribute Book updatedBook) {
 			int id = updatedBook.getId();
 			service.update(id, updatedBook);
 			return "redirect:/available_books";

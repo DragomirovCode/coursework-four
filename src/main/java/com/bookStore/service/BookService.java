@@ -36,4 +36,7 @@ public class BookService {
 		updateBook.setId(id);
 		bRepo.save(updateBook);
 	}
+	public List<Book> getSoldBooks(){
+		return bRepo.findSoldBooks();
+	}
 }
