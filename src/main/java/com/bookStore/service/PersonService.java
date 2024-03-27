@@ -1,5 +1,6 @@
 package com.bookStore.service;
 
+import com.bookStore.entity.Book;
 import com.bookStore.entity.Person;
 import com.bookStore.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@Transactional(readOnly = true)
 public class PersonService {
 
     private final PersonRepository personRepository;
@@ -33,24 +33,25 @@ public class PersonService {
         return foundPerson.orElse(null);
     }
 
-    @Transactional
     public void save(Person person){
         personRepository.save(person);
         person.setPassword(passwordEncoder.encode(person.getPassword())); // шифрование пароля
         person.setRole("ROLE_USER"); // роль для пользователей
     }
 
-    @Transactional
     public void update(int id, Person updatePerson){
         updatePerson.setId(id);
         personRepository.save(updatePerson);
     }
 
-    @Transactional
-    public void delete(int id){
-        personRepository.deleteById(id);
-    }
     public Optional<Person> getPersonByName(String name){
         return personRepository.findByUsername(name);
+    }
+
+    public void deleteById(int id) {
+        personRepository.deleteById(id);
+    }
+    public Person getPersonById(int id) {
+        return personRepository.findById(id).get();
     }
 }

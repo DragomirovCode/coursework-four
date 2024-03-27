@@ -6,9 +6,8 @@ import com.bookStore.service.BookService;
 import com.bookStore.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -45,5 +44,16 @@ public class AdminPanelController {
         ModelAndView modelAndView = new ModelAndView("admin/allPeople");
         modelAndView.addObject("person", list);
         return modelAndView;
+    }
+    @RequestMapping("/deletePerson/{id}")
+    public String deletePerson(@PathVariable("id") int id) {
+        personService.deleteById(id);
+        return "redirect:/all_people";
+    }
+    @RequestMapping("/editPerson/{id}")
+    public String editPerson(@PathVariable("id") int id, Model model) {
+        Person p = personService.getPersonById(id);
+        model.addAttribute("person", p);
+        return "admin/personEdit";
     }
 }
