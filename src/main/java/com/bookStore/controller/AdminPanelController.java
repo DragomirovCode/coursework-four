@@ -61,6 +61,6 @@ public class AdminPanelController {
     public String updatePerson(@ModelAttribute Person updatedPerson) {
         int id = updatedPerson.getId(); // Получаем ID обновляемого человека
         personService.update(id, updatedPerson); // Вызываем метод update сервиса для обновления информации о человеке
-        return "redirect:/all_people"; // Перенаправляем пользователя на страницу административной панели
+        return "redirect:/all_people"; // Перенаправляем пользователя
     }
 }
