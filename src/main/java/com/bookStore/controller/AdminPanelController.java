@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class AdminPanelController {
@@ -51,7 +50,7 @@ public class AdminPanelController {
         } else {
             personList = personService.findAll();
         }
-        return new ModelAndView("admin/allPeople", "person", personList);
+        return new ModelAndView("admin/person/allPeople", "person", personList);
     }
     @RequestMapping("/deletePerson/{id}")
     public String deletePerson(@PathVariable("id") int id) {
@@ -62,7 +61,7 @@ public class AdminPanelController {
     public String showFormEditPerson(@PathVariable("id") int id, Model model) {
         Person p = personService.getPersonById(id);
         model.addAttribute("person", p);
-        return "admin/personEdit";
+        return "admin/person/personEdit";
     }
 
     @PostMapping("/update_person")
@@ -105,7 +104,7 @@ public class AdminPanelController {
     public String showFormEditNews(@PathVariable("id") int id, Model model) {
         News n = newsService.getNewsById(id);
         model.addAttribute("news", n);
-        return "admin/newsEdit";
+        return "admin/news/newsEdit";
     }
     @PostMapping("/update_news")
     public String updateNews(@ModelAttribute News updatedNews) {
@@ -117,6 +116,6 @@ public class AdminPanelController {
     public String viewNews(@PathVariable("id") int id, Model model) {
         News news = newsService.getNewsById(id);
         model.addAttribute("news", news);
-        return "admin/newsDetails";
+        return "admin/news/newsDetails";
     }
 }

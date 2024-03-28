@@ -56,7 +56,7 @@
 			} else {
 				list = service.getAllBook();
 			}
-			return new ModelAndView("bookList", "book", list);
+			return new ModelAndView("book/bookList", "book", list);
 		}
 
 		@GetMapping("/my_books")
@@ -70,7 +70,7 @@
 				list = myBookService.getBooksByUserId(person.get().getId());
 			}
 			model.addAttribute("book", list);
-			return "myBooks";
+			return "book/myBooks";
 		}
 
 		@Transactional
@@ -116,7 +116,7 @@
 		public String editBook(@PathVariable("id") int id, Model model) {
 			Book b = service.getBookById(id);
 			model.addAttribute("book", b);
-			return "bookEdit";
+			return "book/bookEdit";
 		}
 
 		@RequestMapping("/deleteBook/{id}")
@@ -129,7 +129,7 @@
 		public String viewBook(@PathVariable("id") int id, Model model) {
 			Book book = service.getBookById(id);
 			model.addAttribute("book", book);
-			return "bookDetails";
+			return "book/bookDetails";
 		}
 
 	}

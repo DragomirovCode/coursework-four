@@ -1,8 +1,6 @@
 package com.bookStore.controller;
 
-import com.bookStore.entity.Book;
 import com.bookStore.entity.MyBookList;
-import com.bookStore.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +26,6 @@ public class MyBookListController {
 	public String viewMyBook(@PathVariable("id") int id, Model model) {
 		MyBookList myBook = service.getMyBookId(id);
 		model.addAttribute("myBook", myBook);
-		return "myBookDetails";
+		return "book/myBookDetails";
 	}
 }
