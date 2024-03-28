@@ -14,6 +14,7 @@ public class Person {
     @Column(name = "username")
     private String username;
     @NotEmpty(message = "это поле не должно быть пустым")
+    @Column(name = "email")
     private String email;
     @NotEmpty(message = "это поле не должно быть пустым")
     @Column(name = "password")
