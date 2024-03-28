@@ -26,7 +26,7 @@
                 <li class="nav-item">
                     <a class="nav-link text-white" href="/my_books">My Books</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
                     <a class="nav-link text-white" href="/admin_panel">Admin Panel</a>
                 </li>
             </ul>
@@ -70,8 +70,8 @@
         <tr th:each="n :${news}">
             <td th:text="${n.title}"></td>
             <td>
-                <a style="color:blue" th:href="@{/editNews/{id}(id=${n.id})}"><i class="fa-solid fa-pen-to-square ms-4"></i></a>
-                <a style="color:red" th:href="@{/deleteNews/{id}(id=${n.id})}"><i class="fa-solid fa-trash ms-4"></i></a>
+                <a style="color:blue" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" th:href="@{/editNews/{id}(id=${n.id})}"><i class="fa-solid fa-pen-to-square ms-4"></i></a>
+                <a style="color:red" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" th:href="@{/deleteNews/{id}(id=${n.id})}"><i class="fa-solid fa-trash ms-4"></i></a>
             </td>
             <td>
                 <a th:href="@{/news/{id}(id=${n.id})}" style="color: green;"><i class="fa-solid fa-info-circle"></i></a>

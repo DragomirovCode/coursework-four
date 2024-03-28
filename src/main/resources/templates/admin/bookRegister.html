@@ -20,17 +20,17 @@
 				<li class="nav-item">
 					<a class="nav-link active text-white" aria-current="page" href="/">Home</a>
 				</li>
-				<li class="nav-item">
+				<li class="nav-item" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
 					<a class="nav-link text-white" href="/book_register">New book register</a>
 				</li>
-				<li class="nav-item">
+				<li class="nav-item" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
 					<a class="nav-link text-white" href="/all_people">Show all people</a>
 				</li>
-				<li class="nav-item">
+				<li class="nav-item" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
 					<a class="nav-link text-white" href="/sold_books">Show sold books</a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link text-white" href="/">New news item</a>
+				<li class="nav-item" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+					<a class="nav-link text-white" href="/news_item">New news item</a>
 				</li>
 			</ul>
 			<div>
