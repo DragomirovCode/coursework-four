@@ -1,12 +1,10 @@
 package com.bookStore.service;
 
-import com.bookStore.entity.Book;
 import com.bookStore.entity.Person;
 import com.bookStore.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -53,5 +51,9 @@ public class PersonService {
     }
     public Person getPersonById(int id) {
         return personRepository.findById(id).get();
+    }
+
+    public List<Person> getPersonByEmail(String email){
+        return personRepository.findByEmail(email);
     }
 }

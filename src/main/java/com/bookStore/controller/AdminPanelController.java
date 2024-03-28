@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class AdminPanelController {
@@ -43,11 +44,14 @@ public class AdminPanelController {
         return "admin/bookRegister";
     }
     @GetMapping("/all_people")
-    public ModelAndView getAllPeople() {
-        List<Person> list = personService.findAll();
-        ModelAndView modelAndView = new ModelAndView("admin/allPeople");
-        modelAndView.addObject("person", list);
-        return modelAndView;
+    public ModelAndView getAllPerson(@RequestParam(value = "keyword", required = false) String keyword) {
+        List<Person> personList;
+        if (keyword != null && !keyword.isEmpty()) {
+            personList = personService.getPersonByEmail(keyword);
+        } else {
+            personList = personService.findAll();
+        }
+        return new ModelAndView("admin/allPeople", "person", personList);
     }
     @RequestMapping("/deletePerson/{id}")
     public String deletePerson(@PathVariable("id") int id) {
