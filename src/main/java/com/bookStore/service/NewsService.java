@@ -1,5 +1,6 @@
 package com.bookStore.service;
 
+import com.bookStore.entity.Book;
 import com.bookStore.entity.News;
 import com.bookStore.repository.NewsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +27,14 @@ public class NewsService {
 
     public News save(News news){
         return newsRepository.save(news);
+    }
+
+    public void deleteById(int id){
+        newsRepository.deleteById(id);
+    }
+
+    public void update(int id, News updateNews){
+        updateNews.setId(id);
+        newsRepository.save(updateNews);
     }
 }

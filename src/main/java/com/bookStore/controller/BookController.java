@@ -1,7 +1,9 @@
 	package com.bookStore.controller;
 	
+	import com.bookStore.entity.News;
 	import com.bookStore.entity.Person;
 	import com.bookStore.security.PersonDetails;
+	import com.bookStore.service.NewsService;
 	import com.bookStore.service.PersonService;
 	import org.springframework.beans.factory.annotation.Autowired;
 	import org.springframework.stereotype.Controller;
@@ -32,10 +34,18 @@
 
 		@Autowired
 		private PersonService personService;
+		@Autowired
+		private NewsService newsService;
 
 		@GetMapping("/")
-		public String home() {
-			return "home";
+		public ModelAndView getAllNews(@RequestParam(value = "keyword", required = false) String keyword) {
+			List<News> list;
+			if (keyword != null && !keyword.isEmpty()) {
+				list = newsService.getNewsByTitle(keyword);
+			} else {
+				list = newsService.getAllNews();
+			}
+			return new ModelAndView("home", "news", list);
 		}
 
 		@GetMapping("/available_books")

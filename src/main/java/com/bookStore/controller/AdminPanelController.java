@@ -91,4 +91,28 @@ public class AdminPanelController {
     public String showFormNewsRegister() {
         return "admin/newsItem";
     }
+
+    @RequestMapping("/deleteNews/{id}")
+    public String deleteNews(@PathVariable("id") int id) {
+        newsService.deleteById(id);
+        return "redirect:/";
+    }
+    @RequestMapping("/editNews/{id}")
+    public String showFormEditNews(@PathVariable("id") int id, Model model) {
+        News n = newsService.getNewsById(id);
+        model.addAttribute("news", n);
+        return "admin/newsEdit";
+    }
+    @PostMapping("/update_news")
+    public String updateNews(@ModelAttribute News updatedNews) {
+        int id = updatedNews.getId();
+        newsService.update(id, updatedNews);
+        return "redirect:/";
+    }
+    @GetMapping("/news/{id}")
+    public String viewNews(@PathVariable("id") int id, Model model) {
+        News news = newsService.getNewsById(id);
+        model.addAttribute("news", news);
+        return "admin/newsDetails";
+    }
 }
