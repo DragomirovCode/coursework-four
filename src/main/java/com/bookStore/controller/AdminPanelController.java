@@ -1,8 +1,10 @@
 package com.bookStore.controller;
 
 import com.bookStore.entity.Book;
+import com.bookStore.entity.News;
 import com.bookStore.entity.Person;
 import com.bookStore.service.BookService;
+import com.bookStore.service.NewsService;
 import com.bookStore.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,8 @@ public class AdminPanelController {
     private BookService service;
     @Autowired
     private PersonService personService;
+    @Autowired
+    private NewsService newsService;
     @GetMapping("/admin_panel")
     public String getAdminPanel(){
         return "admin/adminPanel";
@@ -75,5 +79,16 @@ public class AdminPanelController {
             soldBooks = service.getSoldBooks();
         }
         return new ModelAndView("admin/soldBooks", "book", soldBooks);
+    }
+
+    @PostMapping("/save_news")
+    public String addNews(@ModelAttribute News n) {
+        newsService.save(n);
+        return "redirect:/news_item";
+    }
+
+    @GetMapping("/news_item")
+    public String showFormNewsRegister() {
+        return "admin/newsItem";
     }
 }
