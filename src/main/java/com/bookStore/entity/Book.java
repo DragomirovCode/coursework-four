@@ -20,9 +20,8 @@ public class Book {
 	@Column(name = "sold_quantity")
 	private int soldQuantity; // количество проданных книг
 
-	public Book(int id, String name, String author, int price, int quantity) {
+	public Book(String name, String author, int price, int quantity) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.author = author;
 		this.price = price;

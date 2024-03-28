@@ -27,6 +27,7 @@ public class Person {
     }
 
     public Person(String username, String email, String password) {
+        super();
         this.username = username;
         this.email = email;
         this.password = password;
