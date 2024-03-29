@@ -1,7 +1,9 @@
 package com.bookStore.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "person")
@@ -10,15 +12,23 @@ public class Person {
     @Column(name = "id")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
-    @NotEmpty(message = "это поле не должно быть пустым")
-    @Column(name = "username")
+
+    @NotEmpty(message = "Имя пользователя не должно быть пустым")
+    @Size(min = 2, max = 50, message = "Имя пользователя должно содержать от 2 до 50 символов")
+    @Column(name = "username", unique = true)
     private String username;
-    @NotEmpty(message = "это поле не должно быть пустым")
-    @Column(name = "email")
+
+    @NotEmpty(message = "Email не должен быть пустым")
+    @Email(message = "Некорректный формат email")
+    @Column(name = "email", unique = true)
     private String email;
-    @NotEmpty(message = "это поле не должно быть пустым")
+
+    @NotEmpty(message = "Пароль не должен быть пустым")
+    @Size(min = 1, message = "Пароль должен содержать не менее 1 символов")
     @Column(name = "password")
     private String password;
+
+    @NotEmpty(message = "Роль не должна быть пустой")
     @Column(name = "role")
     private String role;
 
