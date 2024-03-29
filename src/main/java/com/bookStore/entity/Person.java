@@ -28,7 +28,6 @@ public class Person {
     @Column(name = "password")
     private String password;
 
-    @NotEmpty(message = "Роль не должна быть пустой")
     @Column(name = "role")
     private String role;
 
