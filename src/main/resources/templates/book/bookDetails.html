@@ -8,43 +8,43 @@
             rel="stylesheet"
             integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
             crossorigin="anonymous">
-    <title>Book Details</title>
+    <title>Книжный магазин</title>
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand text-white" href="#">Book Store</a>
+        <a class="navbar-brand text-white" href="#">Книжный магазин</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active text-white" aria-current="page" href="/">Home</a>
+                    <a class="nav-link active text-white" aria-current="page" href="/">Главное меню</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="/available_books">Available Books</a>
+                    <a class="nav-link text-white" href="/available_books">Доступные книги</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="/my_books">My Books</a>
+                    <a class="nav-link text-white" href="/my_books">Мои книги</a>
                 </li>
                 <li class="nav-item" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
-                    <a class="nav-link text-white" href="/admin_panel">Admin Panel</a>
+                    <a class="nav-link text-white" href="/admin_panel">Панель администратора</a>
                 </li>
             </ul>
             <div>
-                <a class="nav-link text-white" href="/logout">Exit</a>
+                <a class="nav-link text-white" href="/logout">Выход</a>
             </div>
         </div>
     </div>
 </nav>
 
-<h1>Book Details</h1>
-<p><strong>Name:</strong> [[${book.name}]]</p>
-<p><strong>Author:</strong> [[${book.author}]]</p>
-<p><strong>Price:</strong> [[${book.price}]]</p>
-<p><strong>Quantity:</strong> [[${book.quantity}]]</p>
+<h1>Подробности о книге</h1>
+<p><strong>Название: </strong> [[${book.name}]]</p>
+<p><strong>Автор: </strong> [[${book.author}]]</p>
+<p><strong>Стоимость: </strong> [[${book.price}]]</p>
+<p><strong>Количество: </strong> [[${book.quantity}]]</p>
 <!-- Добавьте любую другую информацию о книге, которую вы хотите отобразить -->
 
 <script

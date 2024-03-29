@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Book Register</title>
+    <title>Книжный магазин</title>
     <style>
         .error{
             color: red;
@@ -14,54 +14,55 @@
           crossorigin="anonymous">
 </head>
 <body>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand text-white" href="#">Book Store</a>
+        <a class="navbar-brand text-white" href="#">Книжный магазин</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active text-white" aria-current="page" href="/">Home</a>
+                    <a class="nav-link active text-white" aria-current="page" href="/">Главное меню</a>
                 </li>
                 <li class="nav-item" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
-                    <a class="nav-link text-white" href="/book_register">New book register</a>
+                    <a class="nav-link text-white" href="/book_register">Добавить новую книгу</a>
                 </li>
                 <li class="nav-item" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
-                    <a class="nav-link text-white" href="/all_people">Show all people</a>
+                    <a class="nav-link text-white" href="/all_people">Показать всех пользователей</a>
                 </li>
                 <li class="nav-item" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
-                    <a class="nav-link text-white" href="/sold_books">Show sold books</a>
+                    <a class="nav-link text-white" href="/sold_books">Показать все проданные книги</a>
                 </li>
                 <li class="nav-item" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
-                    <a class="nav-link text-white" href="/news_item">New news item</a>
+                    <a class="nav-link text-white" href="/news_item">Добавить новую новость</a>
                 </li>
             </ul>
             <div>
-                <a class="nav-link text-white" href="/logout">Exit</a>
+                <a class="nav-link text-white" href="/logout">Выход</a>
             </div>
         </div>
     </div>
 </nav>
 
 <div class="container my-5 p-5" style="border:1px solid black;">
-    <h4 class="text-center">New News Register</h4>
+    <h4 class="text-center">Добавление новой новости</h4>
     <form class="col-md-4 offset-md-4" th:method="POST" th:action="@{/save_news}" th:object="${news}">
 
         <div class="mb-3">
-            <label for="title" class="form-label">Title</label>
+            <label for="title" class="form-label">Название</label>
             <input type="text" class="form-control" th:field="*{title}" id="title" name="title">
         </div>
         <div class="error" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title Error</div>
 
         <div class="mb-3">
-            <label for="description" class="form-label">Description</label>
+            <label for="description" class="form-label">Описание</label>
             <input type="text" class="form-control" th:field="*{description}" id="description" name="description">
         </div>
         <div class="error" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Description Error</div>
 
-        <center><button type="submit" class="btn btn-primary">Submit</button></center>
+        <center><button type="submit" class="btn btn-primary">Добавить</button></center>
     </form>
 </div>
 

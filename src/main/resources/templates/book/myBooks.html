@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <title>Book Store</title>
+  <title>Книжный магазин</title>
   <script src="https://kit.fontawesome.com/0faddc1af8.js" crossorigin="anonymous"></script>
 
 </head>
@@ -14,27 +14,27 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand text-white" href="#">Book Store</a>
+    <a class="navbar-brand text-white" href="#">Книжный магазин</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active text-white" aria-current="page" href="/">Home</a>
+          <a class="nav-link active text-white" aria-current="page" href="/">Главное меню</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="/available_books">Available Books</a>
+          <a class="nav-link text-white" href="/available_books">Доступные книги</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="/my_books">My Books</a>
+          <a class="nav-link text-white" href="/my_books">Мои книги</a>
         </li>
         <li class="nav-item" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
-          <a class="nav-link text-white" href="/admin_panel">Admin Panel</a>
+          <a class="nav-link text-white" href="/admin_panel">Панель администратора</a>
         </li>
       </ul>
       <div>
-        <a class="nav-link text-white" href="/logout">Exit</a>
+        <a class="nav-link text-white" href="/logout">Выход</a>
       </div>
     </div>
   </div>
@@ -43,19 +43,18 @@
 <div class="container my-5 col-md-6">
   <form th:action="@{/my_books}" method="get">
     <div class="input-group mb-3">
-      <input type="text" class="form-control" name="keyword" placeholder="Search my books...">
-      <button class="btn btn-outline-secondary" type="submit">Search</button>
+      <input type="text" class="form-control" name="keyword" placeholder="Поиск книги по названию...">
+      <button class="btn btn-outline-secondary" type="submit">Поиск</button>
     </div>
   </form>
   <table class="table  table-striped table-hover">
     <thead>
     <tr>
       <th scope="col">Id</th>
-      <th scope="col">Name</th>
-      <th scope="col">Author</th>
-      <th scope="col">Price</th>
-      <th scope="col">Quantity</th>
-      <th scope="col">Action</th>
+      <th scope="col">Название</th>
+      <th scope="col">Автор</th>
+      <th scope="col">Стоимость</th>
+      <th scope="col">Количество</th>
     </tr>
     </thead>
     <tbody>
