@@ -8,10 +8,10 @@
 		<version>2.7.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.bookStore</groupId>
-	<artifactId>bookStore</artifactId>
+	<groupId>com.example</groupId>
+	<artifactId>web-project-book-store</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>bookStore</name>
+	<name>web-project-book-store</name>
 	<description>This is book store project</description>
 	<properties>
 		<java.version>11</java.version>
