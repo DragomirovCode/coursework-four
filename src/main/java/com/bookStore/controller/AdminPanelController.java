@@ -9,9 +9,11 @@ import com.bookStore.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -27,7 +29,11 @@ public class AdminPanelController {
         return "admin/adminPanel";
     }
     @PostMapping("/save")
-    public String addBook(@ModelAttribute Book b) {
+    public String addBook(@ModelAttribute @Valid Book b,
+                          BindingResult bindingResult) {
+        if (bindingResult.hasErrors()){
+            return "admin/bookRegister";
+        }
         // Проверяем, что количество книг больше нуля
         if (b.getQuantity() <= 0) {
             // Обработка ошибки или вывод сообщения пользователю
@@ -39,7 +45,8 @@ public class AdminPanelController {
         return "redirect:/book_register";
     }
     @GetMapping("/book_register")
-    public String bookRegister() {
+    public String bookRegister(Model model) {
+        model.addAttribute("book", new Book());
         return "admin/bookRegister";
     }
     @GetMapping("/all_people")
@@ -65,7 +72,11 @@ public class AdminPanelController {
     }
 
     @PostMapping("/update_person")
-    public String updatePerson(@ModelAttribute Person updatedPerson) {
+    public String updatePerson(@ModelAttribute @Valid Person updatedPerson,
+                               BindingResult bindingResult) {
+        if (bindingResult.hasErrors()){
+            return "admin/person/personEdit";
+        }
         int id = updatedPerson.getId(); // Получаем ID обновляемого человека
         personService.update(id, updatedPerson); // Вызываем метод update сервиса для обновления информации о человеке
         return "redirect:/all_people"; // Перенаправляем пользователя
@@ -85,14 +96,19 @@ public class AdminPanelController {
     }
 
     @PostMapping("/save_news")
-    public String addNews(@ModelAttribute News n) {
+    public String addNews(@ModelAttribute @Valid News n,
+                          BindingResult bindingResult) {
+        if (bindingResult.hasErrors()){
+            return "admin/news/newsItem";
+        }
         newsService.save(n);
         return "redirect:/news_item";
     }
 
     @GetMapping("/news_item")
-    public String showFormNewsRegister() {
-        return "admin/newsItem";
+    public String showFormNewsRegister(Model model) {
+        model.addAttribute("news", new News());
+        return "admin/news/newsItem";
     }
 
     @RequestMapping("/deleteNews/{id}")
@@ -107,7 +123,11 @@ public class AdminPanelController {
         return "admin/news/newsEdit";
     }
     @PostMapping("/update_news")
-    public String updateNews(@ModelAttribute News updatedNews) {
+    public String updateNews(@ModelAttribute @Valid News updatedNews,
+                             BindingResult bindingResult) {
+        if (bindingResult.hasErrors()){
+            return "admin/news/newsEdit";
+        }
         int id = updatedNews.getId();
         newsService.update(id, updatedNews);
         return "redirect:/";

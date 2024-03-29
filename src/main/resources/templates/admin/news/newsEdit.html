@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns:th="https://www.thymeleaf.com">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 
   <meta charset="utf-8">
@@ -10,6 +10,11 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
           crossorigin="anonymous">
   <title>Book Store</title>
+  <style>
+    .error{
+      color: red;
+    }
+  </style>
 </head>
 <body>
 
@@ -50,10 +55,14 @@
   <form class="col-md-4 offset-md-4" th:action="@{/update_news}" method="post" th:object="${news}">
 
     <input type="hidden" name="id" th:value="${news.id}"/>
+
+    <div class="error" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title Error</div>
     <div class="mb-3">
       <label for="title" class="form-label">Title
       </label> <input type="text" class="form-control" id="title" name="title" th:value="${news.title}">
     </div>
+
+    <div class="error" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Description Error</div>
     <div class="mb-3">
       <label for="description" class="form-label">Author
       </label> <input type="text" class="form-control" id="description" name="description" th:value="${news.description}">

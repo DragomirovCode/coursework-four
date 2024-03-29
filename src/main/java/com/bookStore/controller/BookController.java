@@ -8,6 +8,7 @@
 	import org.springframework.beans.factory.annotation.Autowired;
 	import org.springframework.stereotype.Controller;
 	import org.springframework.ui.Model;
+	import org.springframework.validation.BindingResult;
 	import org.springframework.web.bind.annotation.*;
 	import org.springframework.web.servlet.ModelAndView;
 	
@@ -19,7 +20,8 @@
 	import org.springframework.security.core.Authentication;
 	import org.springframework.security.core.context.SecurityContextHolder;
 	import org.springframework.transaction.annotation.Transactional;
-	
+
+	import javax.validation.Valid;
 	import java.security.Principal;
 	import java.util.*;
 
@@ -107,7 +109,11 @@
 		}
 
 		@PostMapping("/update_book")
-		public String updateBook(@ModelAttribute Book updatedBook) {
+		public String updateBook(@ModelAttribute @Valid Book updatedBook,
+								 BindingResult bindingResult) {
+			if (bindingResult.hasErrors()){
+				return "book/bookEdit";
+			}
 			int id = updatedBook.getId();
 			service.update(id, updatedBook);
 			return "redirect:/available_books";

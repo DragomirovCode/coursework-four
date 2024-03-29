@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns:th="https://www.thymeleaf.com">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 
     <meta charset="utf-8">
@@ -23,7 +23,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active text-white" aria-current="page" href="/static">Home</a>
+                    <a class="nav-link active text-white" aria-current="page" href="/">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="/book_register">New book register</a>
@@ -50,19 +50,26 @@
     <form class="col-md-4 offset-md-4" th:action="@{/update_person}" method="post" th:object="${person}">
 
         <input type="hidden" name="id" th:value="${person.id}"/>
+
+        <div class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</div>
         <div class="mb-3">
             <label for="username" class="form-label">Username
             </label> <input type="text" class="form-control" id="username" name="username" th:value="${person.username}">
         </div>
 
+        <div class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</div>
         <div class="mb-3">
             <label for="email" class="form-label">Email
             </label> <input type="text" class="form-control" id="email" name="email" th:value="${person.email}">
         </div>
+
+        <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</div>
         <div class="mb-3">
             <label for="password" class="form-label">Password
             </label> <input type="text" class="form-control" id="password" name="password" th:value="${person.password}">
         </div>
+
+        <div class="error" th:if="${#fields.hasErrors('role')}" th:errors="*{role}">Role Error</div>
         <div class="mb-3">
             <label for="role" class="form-label">Role
             </label> <input type="text" class="form-control" id="role" name="role" th:value="${person.role}">
