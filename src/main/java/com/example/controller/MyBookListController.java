@@ -23,7 +23,7 @@ public class MyBookListController {
 	}
 
 	@GetMapping("/my_book/{id}")
-	public String viewMyBook(@PathVariable("id") int id, Model model) {
+	public String viewMyBook(@PathVariable("id") String id, Model model) {
 		MyBookList myBook = service.getMyBookId(id);
 		model.addAttribute("myBook", myBook);
 		return "book/myBookDetails";
