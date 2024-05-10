@@ -1,10 +1,16 @@
 package com.example.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.PositiveOrZero;
+import java.time.LocalDateTime;
 
 @Entity
+@Getter
+@Setter
 @Table(name="MyBooks")
 public class MyBookList {
 	@Id

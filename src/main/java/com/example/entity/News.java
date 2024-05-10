@@ -1,9 +1,14 @@
 package com.example.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "News")
 public class News {
     @Id
@@ -24,30 +29,6 @@ public class News {
     public News(String title, String description) {
         super();
         this.title = title;
-        this.description = description;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
         this.description = description;
     }
 }
